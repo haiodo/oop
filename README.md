@@ -3,11 +3,6 @@
 1. [cpp-tasks](cpp-tasks) - задачи по С++
 2. [cpp-template](cpp-template) - шаблон проекта для С++ с использованием CMake и GoogleTest
 
-## Контакты для связи
-
-- email: haiodo@gmail.com
-- telegram: http://t.me/haiodo
-
 ## План занятий: 32 часа.
 
 Критерий оценки: Сданы 1+N другие задачи оценка 1+N.
