@@ -124,7 +124,7 @@ int main(int argc, char** argv)
 > word_count.exe input.txt output.csv
 ```
 
-### Требования к программе:
+### Требования к программе
 
 * Для работы со строками используйте класс стандартной библиотеки std::string (см. http://www.cplusplus.com/reference/string/string/)
 
