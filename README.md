@@ -2,15 +2,5 @@
 
 1. [cpp-tasks](cpp-tasks) - задачи по С++
 2. [cpp-template](cpp-template) - шаблон проекта для С++ с использованием CMake и GoogleTest
-
-## План занятий: 32 часа.
-
-Критерий оценки: Сданы 1+N другие задачи оценка 1+N.
-
-## Задачи
-
-1. (Task1) - Начальная задача.
-2. (Task2) - Задачи на выбор, FlatMap, LinkedList(описание позже), BitArray(описание ползже)
-3. (Task3) - Задачи на выбор, Диллема заключенного, Жизнь.
-4. (Task4) - Процессор звука.
-5. (Task5) - Парзер формата CSV.
+3. [java-tasks](java-tasks) - задачи Java
+4. [java-template](java-template) - шаблон проекта для Java, maven + junit
