@@ -36,3 +36,5 @@ build
 out
 .vs
 CMakeSettings.json
+build
+.cache

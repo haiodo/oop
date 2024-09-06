@@ -6,9 +6,9 @@ namespace {
 
 // TODO: переименовать тесты, написать реализации
 TEST(TaskTest, plus) {
-    using task::plus;
+  using task::plus;
 
-    EXPECT_EQ(plus(2, 3), 5);
+  EXPECT_EQ(plus(2, 3), 5);
 }
 
-}
+} // namespace
