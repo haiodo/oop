@@ -10,8 +10,8 @@
 
 Полезные ссылки:
 
-- Что такое битовый массив: https://en.wikipedia.org/wiki/Bit_array
-- Пример промышленной реализации: boost::dynamic_bitset — https://www.boost.org/doc/libs/1_51_0/libs/dynamic_bitset/dynamic_bitset.html
+- Что такое битовый массив: [Bit array - Wikipedia](https://en.wikipedia.org/wiki/Bit_array)
+- Пример промышленной реализации: [boost::dynamic_bitset](https://www.boost.org/doc/libs/1_51_0/libs/dynamic_bitset/dynamic_bitset.html)
 
 ---
 
@@ -201,7 +201,7 @@ auto c = a.count();     // количество единиц
    - Семантика не меняется для пользователя; производительность копирования — O(1) по времени и памяти.
    - Все модифицирующие операции выполняют detach (создают уникальную копию буфера), если он разделяется:
      resize, clear, push_back, set/reset (по индексу и глобально), operator&=, operator|=, operator^=, operator<<=, operator>>=, operator= (при присваивании из временного может принять владение без копии).
-   - Константные методы (включая operator[], to_string, count, any/none, оператор сдвига/битовые без присваивания) не разрывают шаринг.
+   - Константные методы (включая operator[], to_string, count, any/none, операторы сдвига/битовые без присваивания) не разрывают шаринг.
    - swap не детачит и остается noexcept.
    - Сильная гарантия исключений для модифицирующих операций: при сбое состояние объекта и шаринг не меняются.
    - Потокобезопасность не требуется (как в базовом задании). Допускается реализация через std::shared_ptr внутреннего буфера или собственный счетчик ссылок без синхронизации.
@@ -209,8 +209,8 @@ auto c = a.count();     // количество единиц
 
    Подсказка по реализации:
 
-   - Внутренний Buffer: size_bits и vector<word_t> data.
-   - Хранить shared_ptr<Buffer>; перед изменением вызывать ensure_unique().
+   - Внутренний буфер: size_bits и vector<word_t> data.
+   - Хранить shared_ptr на буфер; перед изменением вызывать ensure_unique().
 
    Тесты (минимум):
 
@@ -219,17 +219,22 @@ auto c = a.count();     // количество единиц
    - swap не вызывает detachment.
 
 2. Реализовать перемещающие операции:
+
    ```c++
    BitArray(BitArray&& x) noexcept;
    BitArray& operator=(BitArray&& x) noexcept;
    ```
+
 3. Итераторы:
+
    ```c++
    // Iterator over bits [0..size()); value_type = bool (by value)
    iterator begin();
    iterator end();
    ```
+
    Требования к итератору:
+
    - Однопроходный (ForwardIterator достаточно).
    - Разыменование возвращает значение бита (не прокси).
    - Инвалидация при изменении размера.
