@@ -1,5 +1,5 @@
 MARP ?= marp
-PORT ?= 8080
+PORT ?= 7070
 OUT  ?= build
 
 DECKS := $(sort $(wildcard s*.md) $(wildcard extra_*.md))

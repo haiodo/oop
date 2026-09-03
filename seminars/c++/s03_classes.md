@@ -334,6 +334,7 @@ void print_area(const Rectangle& r) {
 - `mutable` снимает запрет `const` для одного конкретного поля (кэш,
   счётчик обращений, мьютекс) - используется редко и осознанно:
   `mutable int cache_hits_ = 0;`
+- https://habr.com/ru/companies/infopulse/articles/341264/
 
 ---
 
