@@ -28,10 +28,11 @@
 Файл module1.h:
 
 ```c++
+#pragma once
 #include <string>
 
-namespace Module1 {
-  std::string getMyName();
+namespace module1 {
+  std::string my_name();
 }
 ```
 
@@ -40,8 +41,8 @@ namespace Module1 {
 ```c++
 #include "module1.h"
 
-namespace Module1 {
-  std::string getMyName() {
+namespace module1 {
+  std::string my_name() {
     std::string name = "John";
     return name;
   }
@@ -51,10 +52,11 @@ namespace Module1 {
 Файл module2.h:
 
 ```c++
+#pragma once
 #include <string>
 
-namespace Module2 {
-  std::string getMyName();
+namespace module2 {
+  std::string my_name();
 }
 ```
 
@@ -63,8 +65,8 @@ namespace Module2 {
 ```c++
 #include "module2.h"
 
-namespace Module2 {
-  std::string getMyName() {
+namespace module2 {
+  std::string my_name() {
     std::string name = "James";
     return name;
   }
@@ -78,22 +80,21 @@ namespace Module2 {
 #include "module2.h"
 #include <iostream>
 
-int main(int argc, char** argv)
-{
+int main() {
   std::cout << "Hello world!" << "\n";
 
-  std::cout << Module1::getMyName() << "\n";
-  std::cout << Module2::getMyName() << "\n";
+  std::cout << module1::my_name() << "\n";
+  std::cout << module2::my_name() << "\n";
 
-  using namespace Module1;
-  std::cout << getMyName() << "\n"; // (A)
-  std::cout << Module2::getMyName() << "\n";
+  using namespace module1;
+  std::cout << my_name() << "\n"; // (A)
+  std::cout << module2::my_name() << "\n";
 
-  //using namespace Module2; // (B)
-  //std::cout << getMyName() << "\n"; // COMPILATION ERROR (C)
+  //using namespace module2; // (B)
+  //std::cout << my_name() << "\n"; // COMPILATION ERROR (C)
 
-  using Module2::getMyName;
-  std::cout << getMyName() << "\n"; // (D)
+  using module2::my_name;
+  std::cout << my_name() << "\n"; // (D)
 }
 ```
 
@@ -105,17 +106,17 @@ int main(int argc, char** argv)
 2. Изменить один .cpp и пересобрать: должен обновиться только соответствующий ему объектный файл (у остальных дата изменения прежняя).
 3. Объяснить, что выведется в местах (A) и (D) в main.cpp.
 4. Раскомментировать строки (B) и (C) и убедиться, что возникает ошибка компиляции. Объяснить причину и предложить варианты исправления.
-5. Добавить еще одну функцию getMyName(), возвращающую "Peter", в новом пространстве имен (например, Module3), и вывести результат в main.cpp.
+5. Добавить еще одну функцию my_name(), возвращающую "Peter", в новом пространстве имен (например, module3), и вывести результат в main.cpp.
 6. Объяснить, как писать cout без std:: (и почему лучше избегать using namespace std; на уровне глобальной области видимости).
 
 Подсказки и ожидаемое поведение:
 
-- (A): после using namespace Module1; вызов getMyName() не квалифицирован и разрешается в пользу Module1::getMyName → вывод "John".
-- (B)+(C): если раскомментировать using namespace Module2;, то не квалифицированный getMyName() станет неоднозначным между Module1 и Module2 → ошибка компиляции (ambiguity).
-  Варианты исправления: вызывать явно Module1::getMyName()/Module2::getMyName(); убрать один из using namespace; либо использовать точечные using-директивы (например, using Module2::getMyName;) и понимать приоритет имен.
-- (D): using Module2::getMyName; вводит именно эту функцию в текущую область видимости, поэтому не квалифицированный вызов выбирает Module2::getMyName → вывод "James".
-- Добавление Module3:
-  - Создайте module3.h/module3.cpp с функцией, возвращающей "Peter", и выведите Module3::getMyName() в main.cpp.
+- (A): после using namespace module1; вызов my_name() не квалифицирован и разрешается в пользу module1::my_name → вывод "John".
+- (B)+(C): если раскомментировать using namespace module2;, то не квалифицированный my_name() станет неоднозначным между module1 и module2 → ошибка компиляции (ambiguity).
+  Варианты исправления: вызывать явно module1::my_name()/module2::my_name(); убрать один из using namespace; либо использовать точечные using-директивы (например, using module2::my_name;) и понимать приоритет имен.
+- (D): using module2::my_name; вводит именно эту функцию в текущую область видимости, поэтому не квалифицированный вызов выбирает module2::my_name → вывод "James".
+- Добавление module3:
+  - Создайте module3.h/module3.cpp с функцией, возвращающей "Peter", и выведите module3::my_name() в main.cpp.
 - Про cout:
   - Можно написать внутри функции main: using std::cout; и использовать cout.
   - Не рекомендуется писать using namespace std; на уровне заголовков/глобально — это увеличивает риск конфликтов имен.
@@ -228,7 +229,7 @@ cmake --preset asan && cmake --build --preset asan && ctest --preset asan
 - [ ] Объяснено своими словами, что печатается в точках (A) и (D) и почему.
 - [ ] Раскомментированные (B) и (C) дают ошибку компиляции; причина объяснена,
       предложен способ исправления.
-- [ ] Добавлен Module3, его результат выводится.
+- [ ] Добавлен module3, его результат выводится.
 - [ ] Объяснено, почему `using namespace std;` в заголовке опасен, а внутри функции допустим.
 
 Задача 1b:

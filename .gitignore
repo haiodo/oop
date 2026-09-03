@@ -31,3 +31,12 @@
 *.out
 *.app
 build
+/java-template/.idea
+cpp-template/main.ll
+/cpp-template/main.dSYM
+/.vscode
+java-template
+java-swing-examples
+cpp-template/main
+Extra
+cpp-benchmark-template
